@@ -3,9 +3,10 @@
   <div>
     <select name="category_id">
       {% for category in categories %}
-      <option value="{{instructor.id}}"
-      {% if prodcut.category_id == category.id %}selected{% endif %}
-      >{{category.name}}</option>
+      <option value="{{category.id}}"
+      {% if product.category_id == category.id %}selected{% endif %}>
+      {{category.name}}
+      </option>
       {%endfor%}   
     </select>
   </div>
@@ -14,7 +15,7 @@
 
 
 <div class="item">
-  <div>Nome</div>
+  <div>Título</div>
   <div>
     <input 
       type="text"
@@ -29,9 +30,7 @@
 <div class="item">
   <div>Descrição</div>
   <div>
-    <textarea name="description">
-      {{product.description}}
-    </textarea>
+    <textarea name="description">{{product.description}}</textarea>
   </div>
 </div>
 
@@ -43,6 +42,7 @@
       name="price"
       placeholder="Preço do Produto"
       value="{{ product.price }}"
+      onKeyDown="Mask.apply(this, 'formatBRL')"
       >
   </div>
   {% if product.old_price %}
@@ -51,9 +51,8 @@
 </div>
 
 
-{% if product.status %}
 <div class="item">
-  <div>Disponível?</div>
+  <div>Quantidade</div>
   <div>
     <input 
       type="number"
@@ -64,6 +63,7 @@
   </div>
 </div>
 
+{% if product.status %}
 <div class="item">
   <div>Disponivel</div>
   <div>
